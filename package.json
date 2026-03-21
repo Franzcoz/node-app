@@ -1,0 +1,23 @@
+{
+  "name": "node-app",
+  "version": "1.0.0",
+  "description": "A basic node application",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Franzcoz/node-app.git"
+  },
+  "author": "Franco Pérez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Franzcoz/node-app/issues"
+  },
+  "homepage": "https://github.com/Franzcoz/node-app#readme",
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1"
+  }
+}
