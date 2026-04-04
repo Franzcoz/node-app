@@ -15,7 +15,7 @@ Node.js necesita estar instalado en el sistema.
 
 Descargue la carpeta de proyecto o clone el repositorio, y en el directorio principal instale las dependencias ejecutando:
 
-```npm install express```
+```npm install```
 
 - - -
 ## Ejecución del Proyecto

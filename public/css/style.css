@@ -1,0 +1,105 @@
+@font-face {
+    font-family: 'Raleway Variable';
+    font-style: thin;
+    font-display: swap;
+    font-weight: 100 900;
+    src: url(https://cdn.jsdelivr.net/fontsource/fonts/raleway:vf@latest/latin-wght-normal.woff2) format('woff2-variations');
+    unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+* {
+    font-family: 'Raleway Variable', cursive;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-attachment: fixed;
+    background-image: linear-gradient(to top,rgb(36, 37, 38),rgb(74, 76, 78));
+    color: rgb(100, 103, 109);
+}
+
+.bg-second {
+    overflow: hidden;
+    background-attachment: fixed;
+    background-image: linear-gradient(0.3turn,rgb(173, 176, 180) 45%,rgb(206, 210, 214) 60%,rgb(173, 176, 180) 75%);
+    color: rgb(73, 75, 79);
+    box-shadow: rgba(185, 183, 183, 0.1) 0px 6px 12px 6px;
+    border-bottom-style: solid;
+    border-bottom-width: 0 0 3px 0;
+    border-bottom-color: rgb(147, 150, 154);
+}
+
+.btn-second {
+    background: rgb(61, 63, 65);
+    border: solid grey 1px;
+    color: rgb(171, 177, 181);
+}
+
+.btn-second:hover {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    background-image: linear-gradient(0.3turn,rgb(202, 178, 40) 45%,rgb(233, 210, 76) 60%,rgb(202, 178, 40) 75%);
+    color: rgb(107, 93, 16);
+    font-weight: 500;
+}
+
+.btn-menu {
+    background-color: rgb(36, 117, 184);
+    color: rgb(22, 44, 61);
+    border-style: none;
+}
+
+.btn-menu:hover {
+    background-color: rgb(15, 93, 156);
+    color: rgb(65, 138, 187);
+    border-style: none;
+}
+
+.btn-purple {
+    background-color: rgb(189, 53, 164);
+    color: rgb(97, 21, 83);
+    border-style: none;
+}
+
+.btn-purple:hover {
+    background-color: rgb(165, 44, 143);
+    color: rgb(221, 126, 203);
+    border-style: none;
+}
+
+.btn-action {
+    background-color: rgb(169, 225, 109);
+    color: rgb(40, 57, 22);
+    border-style: none;
+}
+
+.btn-action:hover {
+    background-color: rgb(89, 120, 58);
+    color: rgb(169, 225, 109);
+    border-style: none;
+}
+
+#tarjeta {
+    position: fixed;
+    width: 380px;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+}
+
+#coin {
+    position: fixed;
+    z-index: -1;
+    width: 200px;
+    height: 200px;
+    right: -20%;
+    bottom: -20%;
+    border-radius: 50%;
+    border: dashed 6px rgb(137, 119, 18);
+    background-image: linear-gradient(-0.3turn,rgb(181, 160, 36) 45%,rgb(208, 187, 63) 60%,rgb(184, 163, 48) 75%);
+}
+
+.card {
+    background-color: rgb(204, 225, 243);
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cool Wallet - Iniciar Sesión</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" type="image/png" href="./img/icon.svg">
+</head>
+<body>
+    <div class="container p-2">
+        <div id="tarjeta" class="bg-second align-content-end p-4 rounded-2">
+            <div class="my-4 p-1 rounded-5">
+                <h2 class="text-center">Cool Wallet</h2>
+                <h3 class="text-center">Inicio de Sesión</h3>
+            </div>
+            <form id="login-form">
+                    <label for="email">Email</label>
+                    <input class="form-control rounded-5" type="email" id="email" name="email">
+                    <label for="passwd">Contraseña</label>
+                    <input class="form-control rounded-5" type="password" name="passwd" id="passwd">
+                    <button id="login-btn" type="submit" class="btn btn-second m-3 rounded-5">Iniciar sesión</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="./js/login.js"></script>
+</body>
+</html>
