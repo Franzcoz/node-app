@@ -27,3 +27,8 @@ Para ejecutar el proyecto se definieron los siguientes scripts:
 - `npm run dev` \--> Ejecutar en modo desarrollo
 
 Si desea utilizar la aplicación ejecute el primero, y si desea modificarla es recomendable usar el segundo script.
+
+- - -
+## Ejemplos de uso
+
+Por ahora la aplicación está en una etapa temprana de desarrollo en preparación para añadir funcionalidades en el futuro, pero puedes probar accediendo desde un navegador a las rutas principales 'https://localhost:3000/', 'https://localhost:3000/api/status' y 'https://localhost:3000/login'
