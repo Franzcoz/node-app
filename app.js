@@ -14,13 +14,13 @@ app.use(express.static(path.join(__dirname,'public')));
 
 // Definir rutas
 app.get('/',(req,res)=>{
-    res.sendFile(path.join(__dirname,'/public/inicio.html'));
+    res.sendFile(path.join(__dirname,'/public/main.html'));
     logfs.saveLog('/','sitio');
 });
 
 app.get('/api/status',(req,res)=>{
     res.send({status: 'up',msg: 'API funcionando'});
-    logfs.saveLog('/status','sitio');
+    logfs.saveLog('/api/status','sitio');
 });
 
 app.get('/login',(req,res)=>{
