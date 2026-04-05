@@ -1,6 +1,6 @@
-# App v1.0.0 — Node Express WebApp
+# Cool Wallet App v1.0.0 — Node Express Basic Finances WebApp
 
-Aplicación web base construida con **Node y Express**.
+Aplicación web básica para adminsitración de activos financieros construida con **Node y Express**.
 
 - - -
 ## Convenciones
