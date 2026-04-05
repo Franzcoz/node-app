@@ -1,24 +1,25 @@
-// Importar módulos necesarios path, express, cors
+// Importar módulos necesarios path, express, cors, dotenv
 const path = require('path');
 const express = require('express');
 const logfs = require('./src/logs.js');
 //const cors = require("cors");
+require('dotenv').config();
 
 // Instanciar app express
 const app = express();
 
 //app.use(cors());
 app.use(express.json());
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname,'public')));
 
 // Definir rutas
 app.get('/',(req,res)=>{
-    res.sendFile(path.join(__dirname,'/public/index.html'));
+    res.sendFile(path.join(__dirname,'/public/inicio.html'));
     logfs.saveLog('/','sitio');
 });
 
-app.get('/status',(req,res)=>{
-    res.send({status: 'up'});
+app.get('/api/status',(req,res)=>{
+    res.send({status: 'up',msg: 'API funcionando'});
     logfs.saveLog('/status','sitio');
 });
 
@@ -27,12 +28,14 @@ app.get('/login',(req,res)=>{
     logfs.saveLog('/login','sitio');
 });
 
-// Función principal que muestra mensaje de inicio y registra log
-const main = function() {
-    logfs.saveLog('Servidor iniciado','app');
-};
+// Configuración del servidor
+// El puerto a utilizar se leerá del archivo .env o en su defecto se asinará el puerto 3000
+
+const PORT = process.env.PORT || 3000;
 
 // Iniciar servidor
-app.listen(3000,()=>{
-    main();
+
+app.listen(PORT,()=>{
+    // Llamada a función que registra en log e imprime en consola
+    logfs.saveLog(`Servidor iniciado en puerto ${PORT}`,'app');
 });
