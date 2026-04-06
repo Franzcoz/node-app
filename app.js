@@ -1,7 +1,8 @@
 // Importar módulos necesarios path, express, cors, dotenv
 const path = require('path');
 const express = require('express');
-const logfs = require('./src/logs.js');
+const logfs = require('./src/utils/fileLogger.js');
+const logM = require('./src/middlewares/loggerMiddle.js');
 //const cors = require("cors");
 require('dotenv').config();
 
@@ -11,21 +12,19 @@ const app = express();
 //app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname,'public')));
+app.use(logM);
 
 // Definir rutas
 app.get('/',(req,res)=>{
     res.sendFile(path.join(__dirname,'/public/main.html'));
-    logfs.saveLog('/','sitio');
 });
 
 app.get('/api/status',(req,res)=>{
     res.send({status: 'up',msg: 'API funcionando'});
-    logfs.saveLog('/api/status','sitio');
 });
 
 app.get('/login',(req,res)=>{
     res.sendFile(path.join(__dirname,'/public/login.html'));
-    logfs.saveLog('/login','sitio');
 });
 
 // Configuración del servidor
@@ -37,5 +36,5 @@ const PORT = process.env.PORT || 3000;
 
 app.listen(PORT,()=>{
     // Llamada a función que registra en log e imprime en consola
-    logfs.saveLog(`Servidor iniciado en puerto ${PORT}`,'app');
+    logfs.saveLog(`Servidor iniciado en puerto ${PORT}`);
 });
