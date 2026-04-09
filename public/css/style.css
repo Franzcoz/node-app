@@ -20,9 +20,8 @@ body {
     color: rgb(100, 103, 109);
 }
 
-.bg-second {
+.bg-main {
     overflow: hidden;
-    background-attachment: fixed;
     background-image: linear-gradient(0.3turn,rgb(173, 176, 180) 45%,rgb(206, 210, 214) 60%,rgb(173, 176, 180) 75%);
     color: rgb(73, 75, 79);
     box-shadow: rgba(185, 183, 183, 0.1) 0px 6px 12px 6px;
@@ -31,52 +30,68 @@ body {
     border-bottom-color: rgb(147, 150, 154);
 }
 
-.btn-second {
+.text-main-light {
+    color: rgb(171, 177, 181);
+}
+
+.btn-main {
     background: rgb(61, 63, 65);
     border: solid grey 1px;
     color: rgb(171, 177, 181);
 }
 
-.btn-second:hover {
+.btn-main:hover {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     background-image: linear-gradient(0.3turn,rgb(202, 178, 40) 45%,rgb(233, 210, 76) 60%,rgb(202, 178, 40) 75%);
     color: rgb(107, 93, 16);
     font-weight: 500;
 }
 
-.btn-menu {
-    background-color: rgb(36, 117, 184);
-    color: rgb(22, 44, 61);
+.btn-neut {
+    background-color: rgb(56, 145, 218);
+    color: rgb(38, 77, 106);
     border-style: none;
 }
 
-.btn-menu:hover {
-    background-color: rgb(15, 93, 156);
-    color: rgb(65, 138, 187);
+.btn-neut:hover {
+    background-image: linear-gradient(0.3turn,rgb(56, 149, 225) 45%,rgb(76, 165, 238) 60%,rgb(56, 149, 225) 75%);
+    color: rgb(52, 117, 161);
     border-style: none;
 }
 
-.btn-purple {
-    background-color: rgb(189, 53, 164);
-    color: rgb(97, 21, 83);
+.btn-good {
+    background-color: rgb(84, 197, 120);
+    color: rgb(36, 122, 60);
     border-style: none;
 }
 
-.btn-purple:hover {
-    background-color: rgb(165, 44, 143);
-    color: rgb(221, 126, 203);
+.btn-good:hover {
+    background-image: linear-gradient(0.3turn,rgb(97, 218, 135) 45%,rgb(110, 232, 148) 60%,rgb(97, 218, 135) 75%);
+    color: rgb(70, 176, 100);
     border-style: none;
 }
 
-.btn-action {
-    background-color: rgb(169, 225, 109);
-    color: rgb(40, 57, 22);
+.btn-bad {
+    background-color: rgb(216, 65, 78);
+    color: rgb(166, 37, 48);
     border-style: none;
 }
 
-.btn-action:hover {
-    background-color: rgb(89, 120, 58);
-    color: rgb(169, 225, 109);
+.btn-bad:hover {
+    background-image: linear-gradient(0.3turn,rgb(227, 72, 85) 45%,rgb(238, 87, 99) 60%,rgb(227, 72, 85) 75%);
+    color: rgb(208, 56, 69);
+    border-style: none;
+}
+
+.btn-out {
+    background-color: rgb(66, 47, 53);
+    color: rgb(143, 107, 120);
+    border-style: none;
+}
+
+.btn-out:hover {
+    background-image: linear-gradient(0.7turn,rgb(186, 20, 56) 45%,rgb(162, 17, 49) 60%,rgb(186, 20, 56) 75%);
+    color: rgb(241, 32, 63);
     border-style: none;
 }
 
@@ -86,6 +101,16 @@ body {
     top: 50%;
     left: 50%;
     translate: -50% -50%;
+}
+
+#menu {
+    width: 28%;
+}
+
+#info {
+    height: 89vh;
+    width: 100%;
+    align-content: center;
 }
 
 #coin {
@@ -98,8 +123,4 @@ body {
     border-radius: 50%;
     border: dashed 6px rgb(137, 119, 18);
     background-image: linear-gradient(-0.3turn,rgb(181, 160, 36) 45%,rgb(208, 187, 63) 60%,rgb(184, 163, 48) 75%);
-}
-
-.card {
-    background-color: rgb(204, 225, 243);
 }

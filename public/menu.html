@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cool Wallet - Menú Principal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" type="image/png" href="./img/icon.svg">
+</head>
+<body>
+    <div class="container text-center p-0">
+        <nav class="navbar sticky-top bg-main p-1 rounded-bottom-2 align-items-center">
+            <div class="d-flex align-items-center">
+                <a href="/" class="navbar-brand mx-1">
+                    <img src="./img/icon.svg" alt="cool-wallet-icon" width="20">
+                </a>
+                <a href="/menu.html" style="text-decoration: none;"><h4 class="text-center text-light m-0 mx-1">Cool Wallet</h4></a>
+                <p class="text-center text-light m-0 mx-1">Menú Principal</p>
+                <button class="navbar navbar-toggler mx-1 py-0 rounded-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#menu" aria-controls="offcanvasDarkNavbar" aria-label="Menú">
+                    <span class="navbar-toggler-icon" style="width: 18px;"></span>
+                </button>
+            </div>
+            <div class="d-flex align-items-center">
+                <p class="text-center text-light m-0 mx-1">Bienvenido</p>
+                <p id="username1" class="text-center text-light text-nowrap m-0 me-2">Usuario</p>
+                <button id="logout" class="btn btn-out w-100 py-1 rounded-5" data-bs-toggle="modal" data-bs-target="#new">Salir</button>
+            </div>
+        </nav>
+        <div id="menu" class="offcanvas offcanvas-start bg-main align-items-center ms-1 my-2 rounded-2">
+            <div class="mt-4 text-center align-self-center">
+                <h5 id="username2">Usuario</h5>
+                <h5 id="userrol">Rol</h4>
+            </div>
+            <div id="menulist" class="mt-4 mb-3 px-3 w-100">
+            </div>
+        </div>
+        <div id="info" class="align-items-center">
+            <h3 class="text-main-light">Seleccione una opción del menú</h3>
+        </div>
+        <div class="modal fade" id="new" tabindex="-1" aria-labelledby="labelnew" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-main rounded-5" data-bs-dismiss="modal">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="./js/menu.js"></script>
+</body>
+</html>

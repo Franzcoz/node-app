@@ -3,18 +3,24 @@ const path = require('path');
 const express = require('express');
 const logfs = require('./src/utils/fileLogger.js');
 const logM = require('./src/middlewares/loggerMiddle.js');
-//const cors = require("cors");
+const menuRoutes = require('./src/routes/menuRoutes.js');
+const loginRoutes = require('./src/routes/loginRoutes.js');
+const cors = require("cors");
 require('dotenv').config();
 
 // Instanciar app express
 const app = express();
 
-//app.use(cors());
+app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname,'public')));
 app.use(logM);
 
 // Definir rutas
+
+app.use('/api/login', loginRoutes);
+app.use('/api/menus', menuRoutes);
+
 app.get('/',(req,res)=>{
     res.sendFile(path.join(__dirname,'/public/main.html'));
 });

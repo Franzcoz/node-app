@@ -7,7 +7,6 @@ function loggerMiddleware(req, res, next) {
         req.originalUrl.startsWith('/api') || // solicitudes API
         req.originalUrl === '/' // página principal
     ) {
-        console.log(req.originalUrl);
         // Se llama a función logfs con mensaje que incluye método de petición y ruta visitada
         logfs.saveLog(`Solicitud ${req.method} en ${req.originalUrl}`);
     }
