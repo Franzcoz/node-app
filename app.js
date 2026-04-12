@@ -5,6 +5,7 @@ const logfs = require('./src/utils/fileLogger.js');
 const logM = require('./src/middlewares/loggerMiddle.js');
 const menuRoutes = require('./src/routes/menuRoutes.js');
 const loginRoutes = require('./src/routes/loginRoutes.js');
+const instrumentoRoutes = require('./src/routes/instrumentoRoutes.js');
 const cors = require("cors");
 require('dotenv').config();
 
@@ -20,6 +21,7 @@ app.use(logM);
 
 app.use('/api/login', loginRoutes);
 app.use('/api/menus', menuRoutes);
+app.use('/api/inst', instrumentoRoutes);
 
 app.get('/',(req,res)=>{
     res.sendFile(path.join(__dirname,'/public/main.html'));

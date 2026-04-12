@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cool Wallet - Menú Principal</title>
+    <title>Cool Wallet - Instrumentos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="shortcut icon" type="image/png" href="./img/icon.svg">
@@ -16,7 +16,7 @@
                     <img src="./img/icon.svg" alt="cool-wallet-icon" width="20">
                 </a>
                 <a href="/menu.html" style="text-decoration: none;"><h4 class="text-center text-light m-0 mx-1">Cool Wallet</h4></a>
-                <p id="menuname" class="text-center text-light m-0 mx-1">Menú Principal</p>
+                <p id="menuname" class="text-center text-light m-0 mx-1">Administrar Instrumento</p>
                 <button class="navbar navbar-toggler mx-1 py-0 rounded-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#menu" aria-controls="offcanvasDarkNavbar" aria-label="Menú">
                     <span class="navbar-toggler-icon" style="width: 18px;"></span>
                 </button>
@@ -35,15 +35,51 @@
             <div id="menulist" class="mt-4 mb-3 px-3 w-100">
             </div>
         </div>
-        <div id="info" class="align-items-center">
-            <h3 class="text-main-light">Página en construcción...</h3>
+        <div id="info" class="align-content-start py-5">
+            <div id="header" class="bg-main rounded-top-2 text-center py-2">
+                <h4>Instrumentos</h4>
+                <button id="addinst" class="btn btn-good py-1 rounded-5" data-bs-toggle="modal" data-bs-target="#new">Agregar</button>
+                <button id="modif" class="btn btn-neut py-1 rounded-5" data-bs-toggle="modal" data-bs-target="#new">Editar</button>
+                <button id="delinst" class="btn btn-bad py-1 rounded-5" data-bs-toggle="modal" data-bs-target="#new">Eliminar</button>
+            </div>
+            <table class="table table-hover" id="tablaInstrumentos">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Mercado</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
         </div>
-        <div class="modal fade" id="new" tabindex="-1" aria-labelledby="labelnew" aria-hidden="true">
+        <div id="new" class="modal fade" tabindex="-1" aria-labelledby="labelnew" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-body"></div>
+                <div class="modal-content bg-main">
+                    <div class="modal-body">
+                        <h4 id="modal-title"></h4>
+                        <form id="formInstr" class="my-2 py-2">
+                            <div id="campo_id" class="d-none">
+                                <label class="form-label" for="id_ins">Código</label>
+                                <input class="form-control" type="text" name="id_ins" id="id_ins">
+                            </div>
+                            <div id="campo_nom" class="d-none">
+                                <label class="form-label" for="nombre_ins">Nombre</label>
+                                <input class="form-control" type="text" name="nombre_ins" id="nombre_ins">
+                            </div>
+                            <div id="campo_merc" class="d-none m-1">
+                                <label class="form-label" for="tipo_mer">Mercado</label>
+                                <select class="form-control" name="tipo_mer" id="tipo_mer">
+                                    <option value="F">Renta Fija</option>
+                                    <option value="V">Renta Variable</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-main rounded-5" data-bs-dismiss="modal">Aceptar</button>
+                        <button id="cancelbtn" type="button" class="btn btn-main rounded-5 py-1" data-bs-dismiss="modal">Cancelar</button>
+                        <button id="sendbtn" type="button" class="btn rounded-5 py-1 d-none" data-bs-dismiss="modal">Aceptar</button>
                     </div>
                 </div>
             </div>
@@ -51,6 +87,6 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <script src="./js/default.js"></script>
+    <script type="module" src="./js/instrumento.js"></script>
 </body>
 </html>

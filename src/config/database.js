@@ -12,4 +12,9 @@ const pool = new Pool({
     idleTimeoutMillis: 30000
 });
 
+// Mensaje en consola al conectar
+pool.on("connect", () => {
+    console.log("Conectado a PostgreSQL (Neon)")
+})
+
 module.exports = pool

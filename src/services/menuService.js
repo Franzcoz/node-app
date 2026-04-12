@@ -7,7 +7,6 @@ Cada rol tiene asociados ciertos menús.
 */
 
 async function obtenerMenusUsuario(usuario){
-    console.log(usuario);
     const result = await pool.query(
 
     `
@@ -20,9 +19,10 @@ async function obtenerMenusUsuario(usuario){
         ON ur.id_rol = rm.id_rol
     JOIN menu m
         ON rm.id_menu = m.id_menu
-    WHERE ur.id_usuario = '${usuario}'
+    WHERE ur.id_usuario = $1
     ORDER BY m.nombre
     `,
+    [ usuario ]
     )
     // rows contiene la lista de menús permitidos
 return result.rows;

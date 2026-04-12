@@ -22,7 +22,7 @@ async function cargarMenus() {
     menus.forEach((m) => {
         const button = document.createElement('button');
         const classatt = document.createAttribute("class");
-        classatt.value = 'btn btn-main w-100 rounded-5';
+        classatt.value = 'btn btn-main w-100 m-1 rounded-5';
         button.setAttributeNode(classatt);
         button.setAttribute('id',m.id_menu);
         button.innerHTML = m.nombre;
@@ -36,6 +36,7 @@ cargarMenus();
 // Cerrando sesión provisorio
 $('#logout').on('click', (ev) => {
     ev.preventDefault();
+    document.querySelector('.modal-footer').setAttribute('class', 'modal-footer d-none');
     alertModal("Cerrando sesión...");
     localStorage.clear();
     setTimeout(()=>{window.location.href = "login.html"},2000);
@@ -44,5 +45,8 @@ $('#logout').on('click', (ev) => {
 // Función modal
 
 function alertModal(mssg) {
-    $('#new .modal-body').append('<h4>'+mssg+'</h4>');
+    document.querySelector('#new .modal-body h4').innerHTML = "";
+    $('#modal-title').append(mssg);
 }
+
+export { cargarMenus };

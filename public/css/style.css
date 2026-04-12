@@ -36,7 +36,6 @@ body {
 
 .btn-main {
     background: rgb(61, 63, 65);
-    border: solid grey 1px;
     color: rgb(171, 177, 181);
 }
 
@@ -49,11 +48,13 @@ body {
 
 .btn-neut {
     background-color: rgb(56, 145, 218);
+    outline: solid 1px rgb(37, 120, 188);
     color: rgb(38, 77, 106);
     border-style: none;
 }
 
 .btn-neut:hover {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     background-image: linear-gradient(0.3turn,rgb(56, 149, 225) 45%,rgb(76, 165, 238) 60%,rgb(56, 149, 225) 75%);
     color: rgb(52, 117, 161);
     border-style: none;
@@ -61,11 +62,13 @@ body {
 
 .btn-good {
     background-color: rgb(84, 197, 120);
+    outline: solid 1px rgb(57, 180, 96);
     color: rgb(36, 122, 60);
     border-style: none;
 }
 
 .btn-good:hover {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     background-image: linear-gradient(0.3turn,rgb(97, 218, 135) 45%,rgb(110, 232, 148) 60%,rgb(97, 218, 135) 75%);
     color: rgb(70, 176, 100);
     border-style: none;
@@ -73,13 +76,15 @@ body {
 
 .btn-bad {
     background-color: rgb(216, 65, 78);
-    color: rgb(166, 37, 48);
+    outline: solid 1px rgb(195, 50, 62);
+    color: rgb(149, 30, 40);
     border-style: none;
 }
 
 .btn-bad:hover {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     background-image: linear-gradient(0.3turn,rgb(227, 72, 85) 45%,rgb(238, 87, 99) 60%,rgb(227, 72, 85) 75%);
-    color: rgb(208, 56, 69);
+    color: rgb(173, 51, 61);
     border-style: none;
 }
 
@@ -111,6 +116,10 @@ body {
     height: 89vh;
     width: 100%;
     align-content: center;
+}
+
+#info.align-content-start {
+    height: fit-content;
 }
 
 #coin {
