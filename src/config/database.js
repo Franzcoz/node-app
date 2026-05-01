@@ -15,6 +15,6 @@ const pool = new Pool({
 // Mensaje en consola al conectar
 pool.on("connect", () => {
     console.log("Conectado a PostgreSQL (Neon)")
-})
+});
 
 module.exports = pool

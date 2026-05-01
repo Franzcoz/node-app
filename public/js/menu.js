@@ -1,5 +1,7 @@
+let user = "";
+
 async function cargarMenus() {
-    const user = localStorage.getItem('id_usuario');
+    user = localStorage.getItem('id_usuario');
     if (!user) {
         window.location.href = '/login';
         return;
@@ -31,8 +33,6 @@ async function cargarMenus() {
     });
 };
 
-cargarMenus();
-
 // Cerrando sesión provisorio
 $('#logout').on('click', (ev) => {
     ev.preventDefault();
@@ -49,4 +49,6 @@ function alertModal(mssg) {
     $('#modal-title').append(mssg);
 }
 
-export { cargarMenus };
+export { cargarMenus, user };
+
+cargarMenus();
