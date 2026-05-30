@@ -7,7 +7,7 @@ const instrumentoController = {
             const inst = await instrumentoService.getAll();
             res.json(inst);
         } catch (err) {
-            saveLog(`usuario:${req.body.usuario} | GET /instrumento | ${err.stack}`)
+            saveLog(`GET /instrumento | ${err.stack}`)
             res.status(400).json({ error: "Error al consultar instrumentos" });
         }
     },

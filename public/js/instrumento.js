@@ -1,4 +1,4 @@
-import { cargarMenus, user } from "./menu.js";
+import { user, rol, token, alertModal } from "./menu.js";
 
 // Definir variables "instrumento seleccionado" y "opción elegida" (agregar, modif, elim...)
 let instrum = [];
@@ -21,7 +21,11 @@ function tipoRenta(codigo) {
 
 // Obtener instrumentos desde API y cargar en tabla
 async function cargarInstrum() {
-    let resp = await fetch("/api/inst");
+    let resp = await fetch("/api/inst", {
+        headers: {
+            Authorization: "Bearer " + token,
+        }
+    });
     instrum = await resp.json();
 
     tabla.innerHTML = "";
@@ -48,7 +52,6 @@ const seleccionarFila = (tr, inst) => {
         .forEach((f) => f.classList.remove('table-info'));
     tr.classList.add('table-info');
     instruSelec = inst;
-    console.log(instruSelec);
 };
 
 // Mostrar y construir formulario según cada botón
@@ -116,6 +119,7 @@ async function nuevoIns() {
     const resp = await fetch('/api/inst', {
         method: 'POST',
         headers: {
+            Authorization: "Bearer " + token,
             "Content-Type": "application/json",
         },
         body: JSON.stringify(bod)
@@ -128,6 +132,7 @@ async function editIns() {
     const resp = await fetch(`/api/inst/${instruSelec.id_instrumento}`, {
         method: 'PUT',
         headers: {
+            Authorization: "Bearer " + token,
             "Content-Type": "application/json",
         },
         body: JSON.stringify(bod)
@@ -140,6 +145,7 @@ async function elimIns() {
     const resp = await fetch(`/api/inst/${instruSelec.id_instrumento}`, {
         method: 'DELETE',
         headers: {
+            Authorization: "Bearer " + token,
             "Content-Type": "application/json",
         },
     });
@@ -157,10 +163,10 @@ $('#new button#sendbtn').on('click',(ev) => {
         formValues.push(li.value);
     });
 
-    bod = {id: formValues[0], nombre: formValues[1], mercado: formValues[2], usuario: user};
+    bod = { id_instrumento: formValues[0], nombre: formValues[1], tipo_mercado: formValues[2], usuario: user };
     if (btnoption == "addinst") {
-        // Validar que código no esté vacío o contenga otros caracteres
-        if (!bod.id || bod.id.search(/[\s\W]/) >= 0) {
+        // Validar que código(id) no esté vacío o contenga otros caracteres
+        if (!bod.id_instrumento || bod.id_instrumento.search(/[\s\W]/) >= 0) {
             document.querySelector('#formInstr').setAttribute('class', 'd-none');
             document.querySelector('#sendbtn').setAttribute('class', 'd-none');
             alertModal(`Campo "Código": Ingrese un valor válido`);
@@ -186,19 +192,10 @@ $('#new button#sendbtn').on('click',(ev) => {
         elimIns()
         .then(()=>{
             cargarInstrum();
-            console.log("aver2");
         });
-        //const nuevo = await resp.json();
         // if (!resp.ok) {} Implementar mensaje de error
 
     }
     $('#new').modal('hide');
     bod = {};
 });
-
-// Función modal
-
-function alertModal(mssg) {
-    document.querySelector('#new .modal-body h4').innerHTML = "";
-    $('#modal-title').append(mssg);
-}

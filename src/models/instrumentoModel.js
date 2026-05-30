@@ -1,45 +1,29 @@
-const pool = require('../config/database.js');
+const { Instrumento } = require('./sequelizeModels.js');
 
-const Instrumento = {
+const instrumentoModel = {
     async getAll() {
-        const result = await pool.query("SELECT * FROM instrumento ORDER BY id_instrumento");
-        return result.rows;
+        return await Instrumento.findAll({
+            order: [['id_instrumento', 'ASC']],
+        });
     },
-    async getById(id) {
-        const res = await pool.query("SELECT * FROM instrumento WHERE id_instrumento = $1",
-        [id],
-        )
+    async getById(id_instrumento) {
+        return await Instrumento.findByPk(id_instrumento);
     },
-    async create({ id, nombre, mercado }) {
-        const res = await pool.query("INSERT INTO instrumento (id_instrumento, nombre, tipo_mercado) VALUES ($1, $2, $3) RETURNING *",
-            [id, nombre, mercado],
-        );
+    async create({ id_instrumento, nombre, tipo_mercado }) {
+        return await Instrumento.create({ id_instrumento, nombre, tipo_mercado });
     },
-    async update( id, { nombre, mercado }) {
-        const res = await pool.query("UPDATE instrumento SET nombre=$1, tipo_mercado=$2 WHERE id_instrumento=$3 RETURNING *",
-            [nombre, mercado, id],
-        );
-        return res.rows[0];
+    async update( id_instrumento, { nombre, tipo_mercado }) {
+        const instrumento = await Instrumento.findByPk(id_instrumento);
+        if (!instrumento) return null;
+        await instrumento.update({ nombre, tipo_mercado });
+        return instrumento;
     },
-    async delete(id) {
-        const res = await pool.query("DELETE FROM instrumento WHERE id_instrumento=$1 RETURNING *",
-            [id],
-        );
-        return res.rows[0];
-    }
+    async delete(id_instrumento) {
+        const instrumento = await Instrumento.findByPk(id_instrumento);
+        if (!instrumento) return null;
+        await instrumento.destroy();
+        return instrumento;
+    },
 };
 
-/*
-    async create() {
-
-    },
-
-    async update() {
-
-    },
-
-    async delete() {
-
-    }*/
-
-module.exports = Instrumento;
+module.exports = instrumentoModel;

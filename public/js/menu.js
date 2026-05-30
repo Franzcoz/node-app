@@ -1,8 +1,9 @@
-let user = "";
+const token = localStorage.getItem('token');
+let user = localStorage.getItem('id_usuario');
+let rol = localStorage.getItem('id_rol');
 
 async function cargarMenus() {
-    user = localStorage.getItem('id_usuario');
-    if (!user) {
+    if (!token) {
         window.location.href = '/login';
         return;
     }
@@ -13,9 +14,19 @@ async function cargarMenus() {
     document.getElementById('username2').innerHTML = nombre;
 
 
-    // Llamada a API para obtener menús
+    // Llamada a API para obtener menús y entregando token
     const params = new URLSearchParams({ user: user });
-    const resp = await fetch(`/api/menus/?${params}`);
+    const resp = await fetch(`/api/menus/?${params}`, {
+        headers: {
+            Authorization: "Bearer " + token,
+        }
+    });
+
+    // Si la respuesta da un error por token expirado o similar esto lo capta
+    if (!resp.ok) {
+        window.location.href = '/login';
+        return;
+    }
     const menus = await resp.json();
 
     const menuList = document.getElementById('menulist');
@@ -33,9 +44,10 @@ async function cargarMenus() {
     });
 };
 
-// Cerrando sesión provisorio
+// Cerrando sesión
 $('#logout').on('click', (ev) => {
     ev.preventDefault();
+    document.querySelector('form').setAttribute('class', 'd-none');
     document.querySelector('.modal-footer').setAttribute('class', 'modal-footer d-none');
     alertModal("Cerrando sesión...");
     localStorage.clear();
@@ -47,8 +59,9 @@ $('#logout').on('click', (ev) => {
 function alertModal(mssg) {
     document.querySelector('#new .modal-body h4').innerHTML = "";
     $('#modal-title').append(mssg);
+    $('#new').modal("show");
 }
 
-export { cargarMenus, user };
+export { cargarMenus, user, rol, token, alertModal };
 
-cargarMenus();
+cargarMenus()

@@ -37,18 +37,18 @@
         </div>
         <div id="info" class="align-content-start py-5">
             <div id="header" class="bg-main rounded-top-2 text-center py-2">
-                <h4>Instrumentos</h4>
-                <button id="addinst" class="btn btn-good py-1 rounded-5" data-bs-toggle="modal" data-bs-target="#new">Agregar</button>
+                <h4>Emisores</h4>
+                <button id="addemi" class="btn btn-good py-1 rounded-5" data-bs-toggle="modal" data-bs-target="#new">Agregar</button>
                 <button id="modif" class="btn btn-neut py-1 rounded-5" data-bs-toggle="modal" data-bs-target="#new">Editar</button>
-                <button id="delinst" class="btn btn-bad py-1 rounded-5" data-bs-toggle="modal" data-bs-target="#new">Eliminar</button>
+                <button id="delemi" class="btn btn-bad py-1 rounded-5" data-bs-toggle="modal" data-bs-target="#new">Eliminar</button>
             </div>
-            <table class="table table-hover" id="tablaInstrumentos">
+            <table class="table table-hover" id="tablaEmisores">
                 <thead class="table-dark">
                     <tr>
                         <th>#</th>
                         <th>Código</th>
+                        <th>Razón Social</th>
                         <th>Nombre</th>
-                        <th>Mercado</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -59,27 +59,24 @@
                 <div class="modal-content bg-main">
                     <div class="modal-body">
                         <h4 id="modal-title"></h4>
-                        <form id="formInstr" class="my-2 py-2">
+                        <form id="formEmisor" class="my-2 py-2">
                             <div id="campo_id" class="d-none">
-                                <label class="form-label" for="id_ins">Código</label>
-                                <input class="form-control" type="text" name="id_ins" id="id_ins">
+                                <label class="form-label" for="id_emi">Código</label>
+                                <input class="form-control" type="text" name="id_emi" id="id_emi">
                             </div>
-                            <div id="campo_nom" class="d-none">
-                                <label class="form-label" for="nombre_ins">Nombre</label>
-                                <input class="form-control" type="text" name="nombre_ins" id="nombre_ins">
+                            <div id="campo_razon" class="d-none">
+                                <label class="form-label" for="razon_emi">Razón Social</label>
+                                <input class="form-control" type="text" name="razon_emi" id="razon_emi">
                             </div>
-                            <div id="campo_merc" class="d-none m-1">
-                                <label class="form-label" for="tipo_mer">Mercado</label>
-                                <select class="form-control" name="tipo_mer" id="tipo_mer">
-                                    <option value="F">Renta Fija</option>
-                                    <option value="V">Renta Variable</option>
-                                </select>
+                            <div id="campo_nom" class="d-none m-1">
+                                <label class="form-label" for="nom_emi">Nombre</label>
+                                <input class="form-control" type="text" name="nom_emi" id="nom_emi">
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button id="cancelbtn" type="button" class="btn btn-main rounded-5 py-1" data-bs-dismiss="modal">Cancelar</button>
-                        <button id="sendbtn" type="button" class="btn rounded-5 py-1 d-none" data-bs-dismiss="modal">Aceptar</button>
+                        <button id="sendbtn" type="button" class="btn rounded-5 py-1 d-none">Aceptar</button>
                     </div>
                 </div>
             </div>

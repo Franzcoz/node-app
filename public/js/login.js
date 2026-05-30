@@ -21,7 +21,7 @@ $('#login-form').on('submit', (event) => {
     const cred = JSON.stringify({usuario: input_user, clave: input_passwd});
     
     async function login(cred) {
-        const resp = await fetch('/api/login', {
+        const resp = await fetch('/api/auth/login', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -30,13 +30,16 @@ $('#login-form').on('submit', (event) => {
         });
 
         const data = await resp.json();
-        if (data.usuario) {
+        if (data.token) {
+            localStorage.setItem("token", data.token);
             localStorage.setItem('id_usuario',data.usuario.id_usuario);
             localStorage.setItem('nombre_usuario', data.usuario.nombre);
+            localStorage.setItem('id_rol', data.usuario.id_rol);
+            localStorage.setItem('nombre_rol', data.usuario.nombre_rol);
             alerta("alert-success","Iniciando sesión...","btn-success");
             window.location.href = '/menu.html'
         } else {
-            alerta("alert-warning","Usuario o contraseña incorrectos","btn-warning");
+            alerta("alert-warning","Credenciales incorrectas","btn-warning");
             return;
         }
     }
