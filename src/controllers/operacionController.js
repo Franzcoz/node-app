@@ -1,10 +1,10 @@
-const Operacion = require("../models/operacionModel.js");
+const operacionModel = require("../models/operacionModel.js");
 const { success, error } = require('../utils/response.js');
 
 const operacionController = {
     async buscar(req, res) {
         try {
-            const data = await Operacion.buscar(req.query);
+            const data = await operacionModel.buscar(req.query);
             success(res, data, 'Operaciones obtenidas');
         } catch (err) {
             console.error(err);
@@ -13,7 +13,7 @@ const operacionController = {
     },
     async crearCompra(req, res) {
         try {
-            const data = await Operacion.crearCompra(req.body);
+            const data = await operacionModel.crearCompra(req.body);
             success(res, data, 'Compra creada correctamente');
         } catch (err) {
             console.error(err);

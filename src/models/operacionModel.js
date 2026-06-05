@@ -1,155 +1,93 @@
-const pool = require('../config/database.js');
+const { Op } = require('sequelize');
+const { Operacion, OperacionDetalle, Fondo, sequelize } = require('./sequelizeModels.js');
 
-const Operacion = {
+const operacionModel = {
+// BÚSQUEDA
     async buscar({ id_fondo, fecha_desde, fecha_hasta, tipo, id_usuario }) {
-        let query = `
-            SELECT
-                o.id_operacion,
-                o.id_usuario,
-                o.id_fondo,
-                f.nombre as fondo_nombre,
-                o.tipo,
-                o.fecha,
-                o.monto,
-                d.correlativo,
-                d.id_nemotecnico,
-                d.cantidad,
-                d.precio
-            FROM operacion o
-            JOIN fondo f ON f.id_fondo = o.id_fondo
-            JOIN usuario u ON u.id_usuario = o.id_usuario
-            LEFT JOIN operacion_detalle d ON d.id_operacion = o.id_operacion
-            WHERE 1=1
-        `;
-        
-        const params = [];
-        let i = 1;
+        let conditions = [];
+        let query = {
+            attributes: {
+                exclude: ['monto', 'id_fondo']
+            },
+            include: [
+                {
+                    model: Fondo,
+                    required: true,// Para forzar INNER JOIN
+                    attributes: [['nombre', 'fondo_nombre']]
+                },
+                {
+                    model: OperacionDetalle,
+                    attributes: {exclude: ['id_operacion','correlativo']}
+                    // LEFT JOIN (por defecto en sequelize)
+                }
+            ],
+            order: [
+                ['fecha','DESC'],
+                ['id_operacion', 'DESC']
+            ],
+        };
 
         if (id_fondo) {
-            query += ` AND o.id_fondo = $${i++}`;
-            params.push(id_fondo);
+            conditions.push({ id_fondo: id_fondo });
         }
-
         if (tipo) {
-            query += ` AND o.tipo = $${i++}`;
-            params.push(tipo);
+            conditions.push({tipo: tipo});
         }
-
         if (fecha_desde) {
-            query += ` AND o.fecha >= $${i++}`;
-            params.push(fecha_desde);
+            conditions.push({fecha: {[Op.gte]: fecha_desde}});
         }
-
         if (fecha_hasta) {
-            query += ` AND o.fecha <= $${i++}`;
-            params.push(fecha_hasta);
+            conditions.push({fecha: {[Op.lte]: fecha_hasta}});
         }
-
         if (id_usuario) {
-            query += ` AND u.id_usuario = $${i++}`;
-            params.push(id_usuario);
+            conditions.push({id_usuario: id_usuario});
         }
+        if (conditions) {
+            query = {...query, where: {[Op.and]: conditions} };
+        };
 
-        query += ` ORDER BY o.fecha DESC, o.id_operacion DESC`;
-
-        const res = await pool.query(query, params);
-        return res.rows;
-        console.log(res.rows);
+        return await Operacion.findAll(query)
     },
-/*
-    async usuarioBuscar({ id_fondo, fecha_desde, fecha_hasta, tipo,  }) {
-        let query = `
-            SELECT
-                o.id_operacion,
-                o.id_fondo,
-                f.nombre as fondo_nombre,
-                o.tipo,
-                o.fecha,
-                o.monto,
-                d.correlativo,
-                d.id_nemotecnico,
-                d.cantidad,
-                d.precio
-            FROM operacion o
-            JOIN fondo f ON f.id_fondo = o.id_fondo
-            LEFT JOIN operacion_detalle d ON d.id_operacion = o.id_operacion
-            WHERE 1=1
-        `;
-        
-        const params = [];
-        let i = 1;
 
-        if (id_fondo) {
-            query += ` AND o.id_fondo = $${i++}`;
-            params.push(id_fondo);
-        }
-
-        if (tipo) {
-            query += ` AND o.tipo = $${i++}`;
-            params.push(tipo);
-        }
-
-        if (fecha_desde) {
-            query += ` AND o.fecha >= $${i++}`;
-            params.push(fecha_desde);
-        }
-
-        if (fecha_hasta) {
-            query += ` AND o.fecha <= $${i++}`;
-            params.push(fecha_hasta);
-        }
-
-        query += ` ORDER BY o.fecha DESC, o.id_operacion DESC`;
-
-        const res = await pool.query(query, params);
-        return res.rows;
-        console.log(res.rows);
-    },*/
-    
+// COMPRA
     async crearCompra({ id_fondo, fecha, detalles, id_usuario }) {
-        const client = await pool.connect();
+        const t = await sequelize.transaction();
         try {
-            await client.query('BEGIN');
-
-            // 1. generar id (detecta el último id disponible y genera el número siguiente)
-            const resId = await client.query(
-            'SELECT COALESCE(MAX(id_operacion),0) + 1 as id FROM operacion'
-            );
-            const id_operacion = resId.rows[0].id;
-
-            // 2. insertar encabezado
-            // mult. precio por cantidad de cada producto y los suma
             let montoTotal = detalles.reduce((acc, d) => acc + d.cantidad * d.precio, 0);
-
-            await client.query(
-                `INSERT INTO operacion (id_operacion, id_fondo, tipo, fecha, monto, id_usuario)
-                VALUES ($1, $2, 'C', $3, $4, $5)`,
-                [id_operacion, id_fondo, fecha, montoTotal, id_usuario]
+            
+            const oper = await Operacion.create(
+                {
+                    // id_operacion se autoincrementa, configutado en Modelo y BD
+                    id_fondo: id_fondo,
+                    tipo: 'C',
+                    fecha: fecha,
+                    monto: montoTotal,
+                    id_usuario: id_usuario
+                },
+                { transaction: t },
             );
 
-            // 3. insertar detalles
             let correlativo = 1;
 
             for (const d of detalles) {
-                await client.query(
-                    `INSERT INTO operacion_detalle
-                    (id_operacion, correlativo, id_nemotecnico, cantidad, precio)
-                    VALUES ($1, $2, $3, $4, $5)`,
-                    [id_operacion, correlativo++, d.id_nemotecnico, d.cantidad, d.precio]
-                );
-            }
-
-            await client.query('COMMIT');
-
-            return { id_operacion };
-        // Si la operación no resulta se ejecuta rollback
-        } catch (error) {
-            await client.query('ROLLBACK');
-            throw error;
-        } finally {
-            client.release();
+                const deta = await OperacionDetalle.create(
+                    {
+                        id_operacion: oper.id_operacion,
+                        correlativo: correlativo++,
+                        id_nemotecnico: d.id_nemotecnico,
+                        cantidad: d.cantidad,
+                        precio: d.precio
+                    },
+                    { transaction: t },
+                )
+            };
+            await t.commit();
+            return { id_operacion: oper.id_operacion }
+        } catch(error) {
+            await t.rollback();
+            throw(error);
         }
     },
 };
 
-module.exports = Operacion;
+module.exports = operacionModel;

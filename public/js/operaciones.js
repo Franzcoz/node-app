@@ -61,21 +61,31 @@ async function buscarOperaciones(params) {
 
     // OK
     data.forEach((o) => {
-        const fecha = new Date(o.fecha);
-        const fechaFormat = fecha.toLocaleDateString('es-Cl');
-        tabla.innerHTML += `
+        const [año, mes, dia] = o.fecha.split('-').map(Number);
+        const fechaFormat = new Date(año, mes - 1, dia);
+        const fecha = fechaFormat.toLocaleDateString('es-Cl');
+        let p = {
+            id_operacion: o.id_operacion,
+            id_usuario: o.id_usuario,
+            fondo_nombre: o.Fondo.fondo_nombre,
+            tipo: o.tipo,
+            fecha: fecha
+        };
+        o.OperacionDetalles.forEach((d) => {
+            tabla.innerHTML += `
                     <tr>
-                        <td>${o.id_operacion}</td>
-                        <td>${o.id_usuario}</td>
-                        <td>${o.fondo_nombre}</td>
-                        <td>${o.tipo}</td>
-                        <td>${fechaFormat}</td>
-                        <td>${Math.round(o.monto)}</td>
-                        <td>${o.id_nemotecnico || ''}</td>
-                        <td>${Math.round(o.cantidad) || ''}</td>
-                        <td>${Math.round(o.precio) || ''}</td>
+                        <td>${p.id_operacion}</td>
+                        <td>${p.id_usuario}</td>
+                        <td>${p.fondo_nombre}</td>
+                        <td>${p.tipo}</td>
+                        <td>${p.fecha}</td>
+                        <td>${Math.round(d.precio*d.cantidad)}</td>
+                        <td>${d.id_nemotecnico || ''}</td>
+                        <td>${Math.round(d.cantidad) || ''}</td>
+                        <td>${Math.round(d.precio) || ''}</td>
                     </tr>
                     `;
+        })
     });
 };
 
