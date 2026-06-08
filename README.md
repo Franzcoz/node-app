@@ -1,6 +1,6 @@
 # Cool Wallet App v1.0.0 — Node Express Basic Finances WebApp
 
-Aplicación web básica para adminsitración de activos financieros construida con ** Node.js** y **Express**. El proyecto está creado como una base para el desarrollo de un sistema de cartera de inversiones, y consta de:
+Aplicación web básica para adminsitración de activos financieros construida con **Node.js** y **Express**. El proyecto está creado como una base para el desarrollo de un sistema de cartera de inversiones, y consta de:
 
 - Frontend Web (HTML, CSS, JS)
 - API REST de ejemplo
