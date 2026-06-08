@@ -1,49 +1,61 @@
-const pool = require('../config/database.js');
+const { Emisor } = require('./sequelizeModels.js');
 
-const Emisor = {
+const emisorModel = {
     async getAll() {
-        const result = await pool.query("SELECT * FROM emisor ORDER BY id_emisor");
-        return result.rows;
-    },
-    async getById(id) {
-        const res = await pool.query("SELECT * FROM instrumento WHERE id_instrumento = $1",
-        [id],
-        )
+        return await Emisor.findAll(
+            {
+                order: [
+                    ['id_emisor','ASC'],
+                ],
+                raw: true,
+            }
+        );
     },
     async create({ id, razon_social, nombre }) {
         try {
-            const res = await pool.query("INSERT INTO emisor (id_emisor, razon_social, nombre) VALUES ($1, $2, $3) RETURNING *",
-                [id, razon_social, nombre],
+            const res = await Emisor.create(
+                {
+                    id_emisor: id,
+                    razon_social: razon_social,
+                    nombre: nombre,
+                },
+                {
+                    raw: true
+                }
             );
         } catch (err) {
             console.log(err);
         }
     },
     async update( id, { razon_social, nombre }) {
-        const res = await pool.query("UPDATE emisor SET razon_social=$1, nombre=$2 WHERE id_emisor=$3 RETURNING *",
-            [razon_social, nombre, id],
+        const emisor = await Emisor.findByPk(id);
+        if (!emisor) { return null };
+        const res = await Emisor.update(
+            {
+                razon_social: razon_social,
+                nombre: nombre
+            },
+            {
+                where: {
+                    id_emisor: id,
+                }
+            },
+            {
+                raw: true
+            }
         );
-        return res.rows[0];
+        return res;
     },
     async delete(id) {
-        const res = await pool.query("DELETE FROM emisor WHERE id_emisor=$1 RETURNING *",
-            [id],
+        const emisor = await Emisor.findByPk(id);
+        if (!emisor) { return null };
+        const res = await Emisor.destroy(
+            {
+                where: { id_emisor: id, }
+            }
         );
-        return res.rows[0];
+        return res;
     }
 };
 
-/*
-    async create() {
-
-    },
-
-    async update() {
-
-    },
-
-    async delete() {
-
-    }*/
-
-module.exports = Emisor;
+module.exports = emisorModel;

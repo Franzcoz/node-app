@@ -24,7 +24,7 @@
     "express": "^5.2.1",
     "fs-extra": "^11.3.4",
     "jsonwebtoken": "^9.0.3",
-    "pg": "^8.20.0",
+    "pg": "^8.21.0",
     "sequelize": "^6.37.8"
   },
   "devDependencies": {

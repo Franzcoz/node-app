@@ -1,10 +1,10 @@
-const Nemotecnico = require('../models/nemotecnicoModel.js');
+const nemotecnicoModel = require('../models/nemotecnicoModel.js');
 
 const nemoController = {
     async validar(req, res) {
         const { id } = req.params;
 
-        const data = await Nemotecnico.buscarPorId(id);
+        const data = await nemotecnicoModel.buscarPorId(id);
 
         if (!data) {
         return res.status(404).json({ error: 'No existe' });

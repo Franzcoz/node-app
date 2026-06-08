@@ -138,7 +138,7 @@ async function elimEmi() {
     const resp = await fetch(`/api/emisor/${emisorSelec.id_emisor}`, {
         method: 'DELETE',
         headers: {
-            //Authorization: "Bearer " + token,
+            Authorization: "Bearer " + token,
             "Content-Type": "application/json",
         },
     });

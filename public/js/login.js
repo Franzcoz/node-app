@@ -34,8 +34,8 @@ $('#login-form').on('submit', (event) => {
             localStorage.setItem("token", data.token);
             localStorage.setItem('id_usuario',data.usuario.id_usuario);
             localStorage.setItem('nombre_usuario', data.usuario.nombre);
-            localStorage.setItem('id_rol', data.usuario.id_rol);
-            localStorage.setItem('nombre_rol', data.usuario.nombre_rol);
+            localStorage.setItem('id_rol', data.usuario.Rols.id_rol);
+            localStorage.setItem('nombre_rol', data.usuario.Rols.nombre_rol);
             alerta("alert-success","Iniciando sesión...","btn-success");
             window.location.href = '/menu.html'
         } else {

@@ -11,15 +11,9 @@ const emisorController = {
             res.status(400).json({ error: "Error al consultar emisores" });
         }
     },
-    getById: async (req, res) => {
-        const instId = await emisorService.getById(req.params.id);
-        res.json({instrum: instId});
-    },
     create: async (req, res) => {
         try {
             const nuevo = await emisorService.create(req.body);
-            console.log(res)
-            //console.log(res)
             res.status(201).json(nuevo);
         } catch (err) {
             saveLog(`usuario:${req.body.usuario} | POST /emisor | ${err.stack}`)

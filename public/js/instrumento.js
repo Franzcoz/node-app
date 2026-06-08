@@ -155,7 +155,7 @@ async function elimIns() {
 $('#new button#sendbtn').on('click',(ev) => {
     ev.preventDefault();
 
-    const list = document.getElementById('formInstr').querySelectorAll('.form-control');
+    const list = document.getElementById('formInstr').querySelectorAll('.formulario');
     let formValues = [];
 
     // Obtener lo ingresado en formulario

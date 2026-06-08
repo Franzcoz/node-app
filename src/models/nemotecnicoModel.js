@@ -1,13 +1,10 @@
-const pool = require('../config/database.js');
+const { Nemotecnico } = require('./sequelizeModels.js');
 
-const Nemotecnico = {
+const nemotecnicoModel = {
     async buscarPorId(id) {
-        const res = await pool.query(
-        'SELECT id_nemotecnico FROM nemotecnico WHERE id_nemotecnico = $1',
-        [id]
-        );
-        return res.rows[0];
+        const res = await Nemotecnico.findByPk(id);
+        return res;
     },
 };
 
-module.exports = Nemotecnico;
+module.exports = nemotecnicoModel;

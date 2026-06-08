@@ -8,11 +8,12 @@ async function cargarMenus() {
         return;
     }
 
-    // Despliegue del nombre de usuario
+    // Despliegue de datos de usuario
     const nombre = localStorage.getItem('nombre_usuario');
     document.getElementById('username1').innerHTML = nombre.split(' ')[0];
     document.getElementById('username2').innerHTML = nombre;
-
+    const nombre_rol = localStorage.getItem('nombre_rol');
+    document.getElementById('userrol').innerHTML = nombre_rol;
 
     // Llamada a API para obtener menús y entregando token
     const params = new URLSearchParams({ user: user });
@@ -21,13 +22,18 @@ async function cargarMenus() {
             Authorization: "Bearer " + token,
         }
     });
+    const menus = await resp.json();
 
     // Si la respuesta da un error por token expirado o similar esto lo capta
     if (!resp.ok) {
-        window.location.href = '/login';
+        if (menus.mensaje == "token inválido") {
+            window.location.href = '/login';
+            return;
+        }
+        console.log('Error');
+        console.log(menus);
         return;
     }
-    const menus = await resp.json();
 
     const menuList = document.getElementById('menulist');
     menuList.innerHTML = "";

@@ -1,34 +1,98 @@
 # Cool Wallet App v1.0.0 — Node Express Basic Finances WebApp
 
-Aplicación web básica para adminsitración de activos financieros construida con **Node y Express**.
+Aplicación web básica para adminsitración de activos financieros construida con ** Node.js** y **Express**. El proyecto está creado como una base para el desarrollo de un sistema de cartera de inversiones, y consta de:
+
+- Frontend Web (HTML, CSS, JS)
+- API REST de ejemplo
+- Backend con Node.js, Express y securización mediante JWT
+- Sistema de logging a archivo
+- Estructura preparada para crecimiento modular
 
 - - -
-## Convenciones
+## Objetivo del proyecto
 
-La aplicación se ejecuta mediante un archivo principal llamado app.js. Se
-decidió ese nombre para evitar confusiones con el archivo index.html e index.js del frontend y porque representa mejor la naturaleza del programa, pero luego se decidió cambiar también el nombre de aquellos por main.html e main.js pues index.html no estaba siendo registrado como la ruta raíz '/' adecuadamente, lo que interfería con los logs.
+Servir como base simple y ordenada para futuras funcionalidades:
 
+- Ingreso de compras
+- Ingreso de ventas
+- Consulta de cartera
+- Integración con base de datos SQL
+- Autenticación de usuarios
+
+- - -
+## Tecnologías usadas
+
+- Node.js
+- Express
+- CORS
+- dotenv
+- PG + sequelize
+- JWT
+- Nodemon (desarrollo)
 
 - - -
 ## Instalación
 
-Node.js es prerequisito y necesita estar instalado en el sistema.
+Node.js es prerequisito y necesita estar instalado en el sistema. Luego descargue la carpeta de proyecto o clone el repositorio.
 
-Luego descargue la carpeta de proyecto o clone el repositorio, y en el directorio principal instale las dependencias ejecutando:
+- - -
+## Estructura del Proyecto
 
-```npm install```
+proyecto/  
+│  
+├── app.js  
+├── .env(.example)  
+├── package.json  
+├── README.md  
+│  
+├── logs/  
+│ └──log.txt  
+│  
+├── public/ # Frontend  
+│ ├── main.html  
+│ ├── ...  
+│ ├── css/  
+│ ├── img/  
+│ └── js/  
+│  
+└── src/  
+  ├── config/  
+  │ ├── database.js  
+  │ └── sequelize.js  
+  ├── controllers/  
+  ├── middlewares/  
+  ├── models/  
+  ├── routes/  
+  ├── sql/  
+  │ └── create-tables-sistema.sql  
+  └── services/  
+
+
+
+### Configuración
+
+Cambie el nombre del archivo .env.example a .env y agregue las variables de entorno necesarias para el uso de JWT y la configuración de la base de datos.
+
+Luego en el directorio principal instale las dependencias ejecutando:
+
+`npm install`
 
 - - -
 ## Ejecución del Proyecto
 
 Para ejecutar el proyecto se definieron los siguientes scripts:
 
-- `npm run start` \--> Ejecutar en modo producción
-- `npm run dev` \--> Ejecutar en modo desarrollo
+- `npm run start` --> Ejecutar
+- `npm run dev` --> Ejecutar en modo desarrollo
 
-Si desea utilizar la aplicación ejecute el primero, y si desea modificarla es recomendable usar el segundo script.
+Para ejecutar la aplicación se debe usar el primer script. El segundo script está reservado para entornos de desarrollo.
 
 - - -
 ## Ejemplos de uso
 
-Por ahora la aplicación está en una etapa temprana de desarrollo en preparación para añadir funcionalidades en el futuro, pero puedes probar accediendo desde un navegador a las rutas principales 'https://localhost:3000/', 'https://localhost:3000/api/status' y 'https://localhost:3000/login'
+La aplicación se ejecutará en el puerto configurado, que por defecto es'https://localhost:3000/'. Puede también probar la API accediendo a la ruta '/api/status'.
+
+- - -
+## Convenciones
+
+La aplicación se ejecuta mediante un archivo principal llamado app.js. Se decidió ese nombre para evitar confusiones con el archivo index.html e index.js del frontend y porque representa mejor la naturaleza del programa, pero luego se decidió cambiar también el nombre de aquellos por main.html y main.js pues index.html no estaba siendo registrado como la ruta raíz '/' adecuadamente, lo que interfería con los logs.

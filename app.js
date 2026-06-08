@@ -1,18 +1,17 @@
 // Importar módulos necesarios path, express, cors, dotenv
 const path = require('path');
 const express = require('express');
+const cors = require("cors");
+require('dotenv').config();
 const logfs = require('./src/utils/fileLogger.js');
 const logM = require('./src/middlewares/loggerMiddle.js');
 const authRoutes = require('./src/routes/authRoutes');
 const menuRoutes = require('./src/routes/menuRoutes.js');
-const loginRoutes = require('./src/routes/loginRoutes.js');
 const instrumentoRoutes = require('./src/routes/instrumentoRoutes.js');
 const emisorRoutes = require('./src/routes/emisorRoutes.js');
 const fondoRoutes = require('./src/routes/fondoRoutes.js');
 const operacionRoutes = require('./src/routes/operacionRoutes.js');
-const nemotecnicoRoutes = require('./src/routes/nemotecnicoRoutes.js')
-const cors = require("cors");
-require('dotenv').config();
+const nemotecnicoRoutes = require('./src/routes/nemotecnicoRoutes.js');
 
 // Instanciar app express
 const app = express();
@@ -24,7 +23,6 @@ app.use(logM);
 
 // Definir rutas
 
-app.use('/api/login', loginRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/menus', menuRoutes);
 app.use('/api/inst', instrumentoRoutes);

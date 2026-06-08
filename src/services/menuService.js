@@ -1,31 +1,46 @@
-const pool = require('../config/database.js');
-
-/*
-Obtiene los menús permitidos para un usuario.
-El usuario puede tener uno o más roles.
-Cada rol tiene asociados ciertos menús.
-*/
+const { UsuarioRol, Menu, RolMenu, Rol, sequelize } = require('../models/sequelizeModels.js');
 
 async function obtenerMenusUsuario(usuario){
-    const result = await pool.query(
+    try {
+        const res = await UsuarioRol.findAll(
+            {
+                attributes: [],
+                include: {
+                    model: Rol,
+                    attributes: [],
+                    include: {
+                        model: RolMenu,
+                        attributes: [],
+                        include: {
+                            model: Menu,
+                            attributes: [
+                                'id_menu',
+                                'nombre',
+                                'ruta'
+                            ]
+                        }
+                    }
+                },
+                where: {
+                    id_usuario: usuario
+                },
+                order: [
+                    [{ model: Rol }, { model: RolMenu }, { model: Menu }, 'nombre', 'ASC']
+                ],
+                distinct: true,
+                raw: true,
+            },
+        );
+        const menus = res.map(m => ({
+            id_menu: m['Rol.RolMenus.Menu.id_menu'],
+            nombre: m['Rol.RolMenus.Menu.nombre'],
+            ruta: m['Rol.RolMenus.Menu.ruta']
+        }));
 
-    `
-    SELECT DISTINCT
-        m.id_menu,
-        m.nombre,
-        m.ruta
-    FROM usuario_rol ur
-    JOIN rol_menu rm
-        ON ur.id_rol = rm.id_rol
-    JOIN menu m
-        ON rm.id_menu = m.id_menu
-    WHERE ur.id_usuario = $1
-    ORDER BY m.nombre
-    `,
-    [ usuario ]
-    )
-    // rows contiene la lista de menús permitidos
-return result.rows;
+        return menus;
+    } catch (error) {
+        throw error
+    };
 };
 
 module.exports = { obtenerMenusUsuario }

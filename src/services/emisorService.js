@@ -1,11 +1,10 @@
-const Emisor = require("../models/emisorModel.js");
+const emisorModel = require("../models/emisorModel.js");
 
 const emisorService = {
-    getAll: () => Emisor.getAll(),
-    getById: (id) => Emisor.getById(id),
-    create: (data) => Emisor.create(data),
-    update: (id, data) => Emisor.update(id, data),
-    delete: (id) => Emisor.delete(id),
+    getAll: () => emisorModel.getAll(),
+    create: (data) => emisorModel.create(data),
+    update: (id, data) => emisorModel.update(id, data),
+    delete: (id) => emisorModel.delete(id),
 };
 
 module.exports = emisorService;
