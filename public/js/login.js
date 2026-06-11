@@ -36,7 +36,7 @@ $('#login-form').on('submit', (event) => {
             localStorage.setItem('id_rol', data.usuario.Rols.id_rol);
             localStorage.setItem('nombre_rol', data.usuario.Rols.nombre_rol);
             alerta("alert-success","Iniciando sesión...","btn-success");
-            window.location.href = '/menu.html'
+            window.location.href = '/menu'
         } else {
             alerta("alert-warning","Credenciales incorrectas","btn-warning");
             return;

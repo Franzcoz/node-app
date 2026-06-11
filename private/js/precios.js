@@ -17,13 +17,11 @@ async function subirArchivo() {
             alertModal(`✔ ${data.message}. Registros procesados: ${data.data.registros}`);
         } else {
             alertModal(`${data.message}`);
-            $('#new').modal("toggle");
             console.log(data.status);
         }
     } catch (error) {
         document.getElementById('loading').style.display = 'none';
         alertModal('Error al subir archivo');
-        $('#new').modal("toggle");
         console.log(error);
     };
     document.getElementById('archivo').value = '';

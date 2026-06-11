@@ -39,7 +39,6 @@ async function buscarOperaciones(params) {
 
     if (response.status === 'error') {
         alertModal('Error');
-        $('#new').modal("toggle");
         console.log(response.status);
         return;
     }

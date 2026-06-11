@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cool Wallet - Emisores</title>
+    <title>Cool Wallet - Consultar Operaciones</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="shortcut icon" type="image/png" href="/img/icon.svg">
@@ -16,7 +16,7 @@
                     <img src="/img/icon.svg" alt="cool-wallet-icon" width="20">
                 </a>
                 <a href="/menu" style="text-decoration: none;"><h4 class="text-center text-light m-0 mx-1">Cool Wallet</h4></a>
-                <p id="menuname" class="text-center text-light m-0 mx-1">Administrar Emisores</p>
+                <p id="menuname" class="text-center text-light m-0 mx-1">Consultar Operaciones</p>
                 <button class="navbar navbar-toggler mx-1 py-0 rounded-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#menu" aria-controls="offcanvasDarkNavbar" aria-label="Menú">
                     <span class="navbar-toggler-icon" style="width: 18px;"></span>
                 </button>
@@ -37,46 +37,71 @@
         </div>
         <div id="info" class="align-content-start py-5">
             <div id="header" class="bg-main rounded-top-2 text-center py-2">
-                <h4>Emisores</h4>
-                <button id="addemi" class="btn btn-good py-1 rounded-5" data-bs-toggle="modal" data-bs-target="#new">Agregar</button>
-                <button id="modif" class="btn btn-neut py-1 rounded-5" data-bs-toggle="modal" data-bs-target="#new">Editar</button>
-                <button id="delemi" class="btn btn-bad py-1 rounded-5" data-bs-toggle="modal" data-bs-target="#new">Eliminar</button>
+                <h4>Consulta de Operaciones</h4>
+                <div class="row px-4 py-2">
+                    <div class="col-4 col-xl-4">
+                        <div class="py-2">
+                            <label class="form-label">Fondo</label>
+                            <select id="fondo" class="form-select"></select>
+                        </div>
+                    </div>
+                    <div class="col-4 col-xl-4">
+                        <div class="py-2">
+                            <label class="form-label">Tipo</label>
+                            <select id="tipo" class="form-select">
+                                <option value="">Todos</option>
+                                <option value="C">Compra</option>
+                                <option value="V">Venta</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-4 col-xl-4">
+                        <div class="py-2">
+                            <label class="form-label">Usuario</label>
+                            <input id="usuarios_sel" class="form-control" placeholder="Usuario">
+                        </div>
+                    </div>
+                    <div class="col-6 col-xl-4">
+                        <div class="py-2">
+                            <label class="form-label">Desde</label>
+                            <input type="date" id="desde" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-6 col-xl-4">
+                        <div class="py-2">
+                            <label class="form-label">Hasta</label>
+                            <input type="date" id="hasta" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <button id="buscar" class="btn btn-neut py-1 rounded-5">Buscar</button>
             </div>
-            <table class="table table-hover" id="tablaEmisores">
+            <table class="table table-hover" id="tablaOperaciones">
                 <thead class="table-dark">
                     <tr>
-                        <th>#</th>
-                        <th>Código</th>
-                        <th>Razón Social</th>
-                        <th>Nombre</th>
+                        <th>ID</th>
+                        <th>Usuario</th>
+                        <th>Fondo</th>
+                        <th>Tipo</th>
+                        <th>Fecha</th>
+                        <th>Monto</th>
+                        <th>Nemotécnico</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
             </table>
         </div>
-        <div id="new" class="modal fade" tabindex="-1" aria-labelledby="labelnew" aria-hidden="true">
+        <div class="modal fade" id="new" tabindex="-1" aria-labelledby="labelnew" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content bg-main">
                     <div class="modal-body">
                         <h4 id="modal-title"></h4>
-                        <form id="formEmisor" class="my-2 py-2">
-                            <div id="campo_id" class="d-none">
-                                <label class="form-label" for="id_emi">Código</label>
-                                <input class="form-control" type="text" name="id_emi" id="id_emi">
-                            </div>
-                            <div id="campo_razon" class="d-none">
-                                <label class="form-label" for="razon_emi">Razón Social</label>
-                                <input class="form-control" type="text" name="razon_emi" id="razon_emi">
-                            </div>
-                            <div id="campo_nom" class="d-none m-1">
-                                <label class="form-label" for="nom_emi">Nombre</label>
-                                <input class="form-control" type="text" name="nom_emi" id="nom_emi">
-                            </div>
-                        </form>
+                        <form action="" id="form" class="d-none"></form>
                     </div>
                     <div class="modal-footer">
-                        <button id="cancelbtn" type="button" class="btn btn-main rounded-5 py-1" data-bs-dismiss="modal">Cancelar</button>
-                        <button id="sendbtn" type="button" class="btn rounded-5 py-1 d-none">Aceptar</button>
+                        <button type="button" class="btn btn-main rounded-5" data-bs-dismiss="modal">Aceptar</button>
                     </div>
                 </div>
             </div>
@@ -84,6 +109,6 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <script type="module" src="/js/emisor.js"></script>
+    <script type="module" src="/priv-js/operaciones.js"></script>
 </body>
 </html>

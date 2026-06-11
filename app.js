@@ -35,9 +35,10 @@ app.use(logM);
 // Definir rutas
 // Rutas públicas
 app.use(express.static(path.join(__dirname,'/public')));
-/* app.use(express.static(path.join(__dirname,'/assets')/* , {
-    maxAge: 86400000 // cache de 1 día para assets
-} )); */
+
+app.use(express.static(path.join(__dirname,'/assets')/* , {
+    maxAge: 86400000 // cache de 1 día para assets, Descomentar para activar
+}*/));
 
 app.get('/',(req,res)=>{
     res.sendFile(path.join(__dirname,'/public/main.html'));
@@ -61,7 +62,7 @@ app.use('/api/nemotecnico', nemotecnicoRoutes);
 app.use('/api/precios', precioRoutes);
 
 // Rutas privadas
-/* app.use('/', privateRoutes); */
+app.use('/', privateRoutes);
 
 // Logout
 app.get('/logout', (req, res) => {

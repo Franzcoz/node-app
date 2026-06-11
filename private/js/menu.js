@@ -39,7 +39,7 @@ async function cargarMenus() {
         button.setAttributeNode(classatt);
         button.setAttribute('id',m.id_menu);
         button.innerHTML = m.nombre;
-        button.setAttribute('onclick',`window.location.href="${m.ruta/* .split('.')[0] */}"`);
+        button.setAttribute('onclick',`window.location.href="${m.ruta.split('.')[0]}"`);
         menuList.append(button);
     });
 };

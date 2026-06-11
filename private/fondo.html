@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cool Wallet - Cargar Precios</title>
+    <title>Cool Wallet - Fondos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="shortcut icon" type="image/png" href="/img/icon.svg">
@@ -16,7 +16,7 @@
                     <img src="/img/icon.svg" alt="cool-wallet-icon" width="20">
                 </a>
                 <a href="/menu" style="text-decoration: none;"><h4 class="text-center text-light m-0 mx-1">Cool Wallet</h4></a>
-                <p id="menuname" class="text-center text-light m-0 mx-1">Cargar Precios</p>
+                <p id="menuname" class="text-center text-light m-0 mx-1">Administrar Fondos</p>
                 <button class="navbar navbar-toggler mx-1 py-0 rounded-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#menu" aria-controls="offcanvasDarkNavbar" aria-label="Menú">
                     <span class="navbar-toggler-icon" style="width: 18px;"></span>
                 </button>
@@ -37,33 +37,46 @@
         </div>
         <div id="info" class="align-content-start py-5">
             <div id="header" class="bg-main rounded-top-2 text-center py-2">
-                <h4>Cargar Precios</h4>
-                <div class="row px-4 py-2">
-                    <div class="col-12 col-lg-9">
-                        <div class="py-2">
-                            <label class="form-label">Seleccione archivo</label>
-                            <input id="archivo" type="file" accept=".txt" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-3 align-content-lg-center pt-lg-4">
-                        <button id="subir" class="btn btn-neut py-1 rounded-5">Subir archivo</button>
-                    </div>
-                </div>
+                <h4>Fondos</h4>
+                <button id="add" class="btn btn-good py-1 rounded-5" data-bs-toggle="modal" data-bs-target="#new">Agregar</button>
+                <button id="modif" class="btn btn-neut py-1 rounded-5" data-bs-toggle="modal" data-bs-target="#new">Editar</button>
+                <button id="del" class="btn btn-bad py-1 rounded-5" data-bs-toggle="modal" data-bs-target="#new">Eliminar</button>
             </div>
-            <div id="loading" class="text-center mt-3" style="display:none;">
-                <div class="spinner-border text-primary"></div>
-                <div>Cargando archivo...</div>
-            </div>
+            <table class="table table-hover" id="tablaFondos">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Vigencia</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
         </div>
-        <div class="modal fade" id="new" tabindex="-1" aria-labelledby="labelnew" aria-hidden="true">
+        <div id="new" class="modal fade" tabindex="-1" aria-labelledby="labelnew" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content bg-main">
                     <div class="modal-body">
                         <h4 id="modal-title"></h4>
-                        <form action="" id="form" class="d-none"></form>
+                        <form id="formEmisor" class="my-2 py-2">
+                            <div id="campo_id" class="d-none">
+                                <label class="form-label" for="id_emi">Código</label>
+                                <input class="form-control" type="text" name="id_emi" id="id_emi">
+                            </div>
+                            <div id="campo_razon" class="d-none">
+                                <label class="form-label" for="razon_emi">Razón Social</label>
+                                <input class="form-control" type="text" name="razon_emi" id="razon_emi">
+                            </div>
+                            <div id="campo_nom" class="d-none m-1">
+                                <label class="form-label" for="nom_emi">Nombre</label>
+                                <input class="form-control" type="text" name="nom_emi" id="nom_emi">
+                            </div>
+                        </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-main rounded-5" data-bs-dismiss="modal">Aceptar</button>
+                        <button id="cancelbtn" type="button" class="btn btn-main rounded-5 py-1" data-bs-dismiss="modal">Cancelar</button>
+                        <button id="sendbtn" type="button" class="btn rounded-5 py-1 d-none">Aceptar</button>
                     </div>
                 </div>
             </div>
@@ -71,6 +84,6 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <script type="module" src="/js/precios.js"></script>
+    <script type="module" src="/priv-js/fondo.js"></script>
 </body>
 </html>

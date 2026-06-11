@@ -102,11 +102,3 @@ $("#header button").on('click', (ev) => {
     // Enviar título a función que muestra modal
     alertModal('Pronto...');
 });
-
-// Cerrando sesión provisorio
-$('#logout').on('click', (ev) => {
-    ev.preventDefault();
-    alertModal("Cerrando sesión...");
-    localStorage.clear();
-    setTimeout(()=>{window.location.href = "login.html"},2000);
-});

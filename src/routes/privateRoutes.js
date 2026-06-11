@@ -3,6 +3,7 @@ const router = express.Router();
 const path = require('path');
 const { verificarToken } = require('../middlewares/authMiddle.js');
 
+router.use('/priv-js', verificarToken, express.static(path.join(__dirname,'../../private/js')));
 
 router.use('/menu', verificarToken, (req, res) => {
     res.sendFile(path.join(__dirname,'../../private/menu.html'));
