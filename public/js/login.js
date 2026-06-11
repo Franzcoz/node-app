@@ -30,8 +30,7 @@ $('#login-form').on('submit', (event) => {
         });
 
         const data = await resp.json();
-        if (data.token) {
-            localStorage.setItem("token", data.token);
+        if (data.usuario) {
             localStorage.setItem('id_usuario',data.usuario.id_usuario);
             localStorage.setItem('nombre_usuario', data.usuario.nombre);
             localStorage.setItem('id_rol', data.usuario.Rols.id_rol);

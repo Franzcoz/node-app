@@ -30,8 +30,21 @@ body {
     border-bottom-color: rgb(147, 150, 154);
 }
 
+.text-main {
+    color: rgb(73, 75, 79);
+}
+
 .text-main-light {
     color: rgb(171, 177, 181);
+}
+
+.text-main-link:any-link {
+    color: rgb(34, 42, 48);
+}
+
+.text-main-link:hover, .text-main-link:active {
+    color: rgb(160, 142, 43);
+    font-weight: 530;
 }
 
 .btn-main {

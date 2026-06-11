@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const emisorController = require('../controllers/emisorController.js');
-const { verificarToken } = require("../middlewares/authMiddle.js")
+const { verificarToken } = require("../middlewares/authMiddle.js");
 
 router.get("", verificarToken, emisorController.getAll);
 router.post("", verificarToken, emisorController.create);

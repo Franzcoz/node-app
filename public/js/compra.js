@@ -1,4 +1,4 @@
-import { user, rol, token, alertModal } from "./menu.js";
+import { user, rol, alertModal } from "./menu.js";
 
 // Definir variables
 let fondos = [];
@@ -10,7 +10,7 @@ let detalles = [];
 async function cargarFondos() {
     const resp = await fetch("/api/fondo", {
         headers: {
-            Authorization: "Bearer " + token,
+            "Content-Type": "application/json",
         }
     });
     fondos = await resp.json();
@@ -27,7 +27,11 @@ cargarFondos();
 // Validar si Nemotécnico ingresado se encuentra registrado o no
 async function validarNemo(nemo) {
     if (!nemo) return;
-    const res = await fetch(`/api/nemotecnico/${nemo}`);
+    const res = await fetch(`/api/nemotecnico/${nemo}`, {
+        headers: {
+            "Content-Type": "application/json",
+        }
+    });
     if (!res.ok) {
         alertModal('Nemotécnico no existe');
         document.getElementById('nemotec').value = '';
@@ -94,7 +98,6 @@ async function crearCompra() {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: "Bearer " + token,
             },
             body: JSON.stringify(bod)
         });

@@ -1,4 +1,4 @@
-import { user, rol, token, alertModal } from "./menu.js";
+import { user, rol, alertModal } from "./menu.js";
 
 // Definir variables "Emisor seleccionado" y "opción elegida" (agregar, modif, elim...)
 let emisores = [];
@@ -13,8 +13,8 @@ let response;
 async function cargarEmisores() {
     let resp = await fetch("/api/emisor", {
         headers: {
-            Authorization: "Bearer " + token,
-        }
+            "Content-Type": "application/json",
+        },
     });
     emisores = await resp.json();
     console.log(emisores)
@@ -112,7 +112,6 @@ async function nuevoEmi() {
     const resp = await fetch('/api/emisor', {
         method: 'POST',
         headers: {
-            Authorization: "Bearer " + token,
             "Content-Type": "application/json",
         },
         body: JSON.stringify(bod)
@@ -125,7 +124,6 @@ async function editEmi() {
     const resp = await fetch(`/api/emisor/${emisorSelec.id_emisor}`, {
         method: 'PUT',
         headers: {
-            Authorization: "Bearer " + token,
             "Content-Type": "application/json",
         },
         body: JSON.stringify(bod)
@@ -138,7 +136,6 @@ async function elimEmi() {
     const resp = await fetch(`/api/emisor/${emisorSelec.id_emisor}`, {
         method: 'DELETE',
         headers: {
-            Authorization: "Bearer " + token,
             "Content-Type": "application/json",
         },
     });

@@ -1,4 +1,4 @@
-import { user, rol, token, alertModal } from "./menu.js";
+import { user, rol, alertModal } from "./menu.js";
 
 // Definir variables
 let fondos = [];
@@ -15,8 +15,8 @@ if (rol == 'TRADER') {
 async function cargarFondos() {
     const resp = await fetch("/api/fondo", {
         headers: {
-            Authorization: "Bearer " + token,
-        }
+            "Content-Type": "application/json",
+        },
     });
     fondos = await resp.json();
     const select = document.getElementById('fondo');
@@ -32,8 +32,8 @@ cargarFondos();
 async function buscarOperaciones(params) {
     const resp = await fetch(`/api/operacion?${params}`, {
         headers: {
-            Authorization: "Bearer " + token,
-        }
+            "Content-Type": "application/json",
+        },
     });
     const response = await resp.json();
 

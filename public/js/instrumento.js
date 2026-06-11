@@ -1,4 +1,4 @@
-import { user, rol, token, alertModal } from "./menu.js";
+import { user, rol, alertModal } from "./menu.js";
 
 // Definir variables "instrumento seleccionado" y "opción elegida" (agregar, modif, elim...)
 let instrum = [];
@@ -23,10 +23,11 @@ function tipoRenta(codigo) {
 async function cargarInstrum() {
     let resp = await fetch("/api/inst", {
         headers: {
-            Authorization: "Bearer " + token,
-        }
+            "Content-Type": "application/json",
+        },
     });
     instrum = await resp.json();
+    console.log(instrum)
 
     tabla.innerHTML = "";
 
@@ -119,7 +120,6 @@ async function nuevoIns() {
     const resp = await fetch('/api/inst', {
         method: 'POST',
         headers: {
-            Authorization: "Bearer " + token,
             "Content-Type": "application/json",
         },
         body: JSON.stringify(bod)
@@ -132,7 +132,6 @@ async function editIns() {
     const resp = await fetch(`/api/inst/${instruSelec.id_instrumento}`, {
         method: 'PUT',
         headers: {
-            Authorization: "Bearer " + token,
             "Content-Type": "application/json",
         },
         body: JSON.stringify(bod)
@@ -145,7 +144,6 @@ async function elimIns() {
     const resp = await fetch(`/api/inst/${instruSelec.id_instrumento}`, {
         method: 'DELETE',
         headers: {
-            Authorization: "Bearer " + token,
             "Content-Type": "application/json",
         },
     });

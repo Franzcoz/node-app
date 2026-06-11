@@ -1,1 +1,1 @@
-import { user, rol, token, alertModal } from "./menu.js";
+import { user, rol, alertModal } from "./menu.js";

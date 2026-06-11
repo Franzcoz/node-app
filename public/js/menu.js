@@ -1,13 +1,7 @@
-const token = localStorage.getItem('token');
 let user = localStorage.getItem('id_usuario');
 let rol = localStorage.getItem('id_rol');
 
 async function cargarMenus() {
-    if (!token) {
-        window.location.href = '/login';
-        return;
-    }
-
     // Despliegue de datos de usuario
     const nombre = localStorage.getItem('nombre_usuario');
     document.getElementById('username1').innerHTML = nombre.split(' ')[0];
@@ -19,8 +13,8 @@ async function cargarMenus() {
     const params = new URLSearchParams({ user: user });
     const resp = await fetch(`/api/menus/?${params}`, {
         headers: {
-            Authorization: "Bearer " + token,
-        }
+            "Content-Type": "application/json",
+        },
     });
     const menus = await resp.json();
 
@@ -45,19 +39,19 @@ async function cargarMenus() {
         button.setAttributeNode(classatt);
         button.setAttribute('id',m.id_menu);
         button.innerHTML = m.nombre;
-        button.setAttribute('onclick',`window.location.href="${m.ruta}?menu=${encodeURIComponent(m.nombre)}"`);
+        button.setAttribute('onclick',`window.location.href="${m.ruta/* .split('.')[0] */}"`);
         menuList.append(button);
     });
 };
 
 // Cerrando sesión
-$('#logout').on('click', (ev) => {
+$('#logout').on('click', async (ev) => {
     ev.preventDefault();
     document.querySelector('form').setAttribute('class', 'd-none');
     document.querySelector('.modal-footer').setAttribute('class', 'modal-footer d-none');
     alertModal("Cerrando sesión...");
     localStorage.clear();
-    setTimeout(()=>{window.location.href = "login.html"},2000);
+    window.location.href = '/logout';
 });
 
 // Función modal
@@ -68,6 +62,6 @@ function alertModal(mssg) {
     $('#new').modal("show");
 }
 
-export { cargarMenus, user, rol, token, alertModal };
+export { cargarMenus, user, rol, alertModal };
 
 cargarMenus()
