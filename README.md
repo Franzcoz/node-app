@@ -93,6 +93,23 @@ Para ejecutar la aplicación se debe usar el primer script. El segundo script es
 La aplicación se ejecutará en el puerto configurado, que por defecto es'https://localhost:3000/'. Puede también probar la API accediendo a la ruta '/api/status'.
 
 - - -
+## To-Do
+
+- [x] Utilizar sequelize para consultas a BD
+- [x] Incorporar autenticación con token por medio de cookies
+- [x] Implementar rutas privadas con redireccionamiento desde servidor
+- [ ] Implementar rutas y/o consultas protegidas según rol de usuario desde servidor
+- [ ] Incorporar usuario en log desde authMiddle u otro
+- [ ] Implementar pantallas y backend para administración de Usuarios
+- [ ] Implementar pantallas y backend para administración de Roles
+- [ ] Implementar pantallas y backend para administración de Menús
+- [ ] Implementar pantallas y backend para administración de Nemotécnicos
+- [ ] Implementar pantallas y backend para consulta y valorización de Carteras
+- [ ] Implementar pantallas y backend para ingreso de Ventas
+- [ ] Implementar setup para configurar BD local o serverless
+- [ ] Implementar creación de BD local desde cero
+
+- - -
 ## Convenciones
 
 La aplicación se ejecuta mediante un archivo principal llamado app.js. Se decidió ese nombre para evitar confusiones con el archivo index.html e index.js del frontend y porque representa mejor la naturaleza del programa, pero luego se decidió cambiar también el nombre de aquellos por main.html y main.js pues index.html no estaba siendo registrado como la ruta raíz '/' adecuadamente, lo que interfería con los logs.
