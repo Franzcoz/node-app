@@ -38,43 +38,43 @@ Node.js es prerequisito y necesita estar instalado en el sistema. Luego descargu
 - - -
 ## Estructura del Proyecto
 
-proyecto/
-│
-├── app.js
-├── .env(.example)
-├── package.json
-├── README.md
-│
-├── logs/
-│ └──log.txt
-│
-├── assets/ # Assets públicos
-│ ├── css/
-│ └── img/
-│
-├── private/ # Frontend privado
-│ ├── menu.html
-│ ├── ...
-│ └── js/
-│
-├── public/ # Frontend público
-│ ├── main.html
-│ ├── ...
-│ ├── css/
-│ ├── img/
-│ └── js/
-│
-└── src/
-  ├── config/
-  │ ├── database.js
-  │ └── sequelize.js
-  ├── controllers/
-  ├── middlewares/
-  ├── models/
-  ├── routes/
-  ├── sql/
-  │ └── create-tables-sistema.sql
-  └── services/
+proyecto/  
+│  
+├── app.js  
+├── .env(.example)  
+├── package.json  
+├── README.md  
+│  
+├── logs/  
+│ └──log.txt  
+│  
+├── assets/ # Assets públicos  
+│ ├── css/  
+│ └── img/  
+│  
+├── private/ # Frontend privado  
+│ ├── menu.html  
+│ ├── ...  
+│ └── js/  
+│  
+├── public/ # Frontend público  
+│ ├── main.html  
+│ ├── ...  
+│ ├── css/  
+│ ├── img/  
+│ └── js/  
+│  
+└── src/  
+  ├── config/  
+  │ ├── database.js  
+  │ └── sequelize.js  
+  ├── controllers/  
+  ├── middlewares/  
+  ├── models/  
+  ├── routes/  
+  ├── sql/  
+  │ └── create-tables-sistema.sql  
+  └── services/  
 
 
 
