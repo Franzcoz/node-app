@@ -7,7 +7,7 @@ const saveLog = (mensaje) => {
     const hora = new Date().toLocaleTimeString();
     const path = require('path');
 
-    const ruta = path.join(__dirname, `../../logs/log-${fecha}.txt`);
+    const ruta = path.join(__dirname, `../../logs/log-${fecha}.log`);
 
     const lineamsg = `${fecha} | ${hora} | ${mensaje}`;
 
