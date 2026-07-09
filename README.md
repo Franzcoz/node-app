@@ -8,7 +8,7 @@ Aplicación web básica para adminsitración de activos financieros construida c
 - Sistema de logging a archivo
 - Estructura preparada para crecimiento modular
 
-Pruébala [aquí](https://coll-wallet.onrender.com) con las credenciales usuario: GUEST y contraseña: guest4231
+Pruébala [aquí](https://cool-wallet.onrender.com) con las credenciales usuario: GUEST y contraseña: guest4231
 
 - - -
 ## Objetivo del proyecto
