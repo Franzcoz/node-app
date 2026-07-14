@@ -42,7 +42,6 @@ const seleccionarFila = (tr, fon) => {
         .forEach((f) => f.classList.remove('table-info'));
     tr.classList.add('table-info');
     fondosSelec = fon;
-    console.log(fondosSelec);
 };
 
 $("#header button").on('click', (ev) => {

@@ -9,7 +9,7 @@ const saveLog = (mensaje) => {
 
     const ruta = path.join(__dirname, `../../logs/log-${fecha}.log`);
 
-    const lineamsg = `${fecha} | ${hora} | ${mensaje}`;
+    const lineamsg = `LOG: ${fecha} | ${hora} | ${mensaje}`;
 
     // Escribimos mensaje al archivo log
     fs.appendFileSync(ruta,lineamsg + '\n',(err)=>{

@@ -1,6 +1,6 @@
 const { Usuario, Rol, sequelize } = require('../models/sequelizeModels.js');
 
-async function loginUsuario(usuario, clave) {
+async function loginUsuario(usuario) {
     try {
         const res = await Usuario.findOne(
             {
@@ -10,7 +10,7 @@ async function loginUsuario(usuario, clave) {
                             'nombre']
                     ],
                     exclude: [
-                        'clave', 'nombre', 'apellido1', 'apellido2', 'email', 'estado'
+                        'nombre', 'apellido1', 'apellido2', 'email', 'estado'
                     ]
                 },
                 include: [
@@ -23,7 +23,6 @@ async function loginUsuario(usuario, clave) {
                 ],
                 where: {
                     id_usuario: usuario,
-                    clave: clave,
                     estado: 'V'
                 },
                 raw: true,

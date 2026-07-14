@@ -12,15 +12,12 @@ const verificarToken = (req, res, next) => {
 
     // Si no hay token
     if (!authToken) {
-        console.log(1);
-        //console.log(req);
+        // Respuesta adaptada a origen de petición ya sea fetch o desde navegador
         if (isFetch) {
-            console.log(11)
             // Se envía objeto json a solicitud fetch
             res.status(401).json({ mensaje: "token requerido" });
             return;
         } else if (isNavigation) {
-            console.log(12)
             // Se redirecciona desde servidor
             return res.redirect('/login');
         } else {
@@ -30,21 +27,15 @@ const verificarToken = (req, res, next) => {
     }
     //const token = authHeader.split(" ")[1];
     try {
-        console.log(2);
-        //console.log(authToken);
         const decoded = jwt.verify(authToken, SECRET);
         req.usuario = decoded;
         next();
     } catch (err) {
-        console.log(3);
-        //console.log(req);
         if (isFetch) {
-            console.log(31)
             // Se envía objeto json a solicitud fetch
             //res.clearCookie('authToken');
             return res.status(401).json({ mensaje: "token inválido" });
         } else if (isNavigation) {
-            console.log(32)
             // Se redirecciona desde servidor
             return res.redirect('/login');
         }

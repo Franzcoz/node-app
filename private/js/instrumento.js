@@ -27,7 +27,6 @@ async function cargarInstrum() {
         },
     });
     instrum = await resp.json();
-    console.log(instrum)
 
     tabla.innerHTML = "";
 

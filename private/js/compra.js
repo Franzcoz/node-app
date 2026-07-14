@@ -64,7 +64,6 @@ async function modifTabla() {
     // Añadir evento click a cada botón de eliminar
     document.querySelectorAll('[id^=elim-]').forEach((b) => {
         b.addEventListener('click', (ev) => {
-            console.log(ev.target.id.split('-')[1]);
             const numer = ev.target.id.split('-')[1];
             elim(numer);
         });

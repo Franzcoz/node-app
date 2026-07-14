@@ -19,7 +19,7 @@ create table rol(
 
 create table usuario(
   id_usuario	codigo PRIMARY KEY,
-  clave	varchar(12),
+  clave	varchar(60),
   nombre	varchar(50),
   apellido1	varchar(50),
   apellido2	varchar(50),

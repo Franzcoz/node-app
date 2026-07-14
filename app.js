@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 
 const logfs = require('./src/utils/fileLogger.js');
 const logM = require('./src/middlewares/loggerMiddle.js');
+const registroRoutes = require('./src/routes/registroRoutes.js');
 const authRoutes = require('./src/routes/authRoutes');
 const menuRoutes = require('./src/routes/menuRoutes.js');
 const instrumentoRoutes = require('./src/routes/instrumentoRoutes.js');
@@ -52,6 +53,11 @@ app.get('/login',(req,res)=>{
     res.sendFile(path.join(__dirname,'/public/login.html'));
 });
 
+app.get('/register',(req,res)=>{
+    res.sendFile(path.join(__dirname,'/public/register.html'));
+});
+
+app.use('/api/registro', registroRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/menus', menuRoutes);
 app.use('/api/inst', instrumentoRoutes);

@@ -17,7 +17,6 @@ async function cargarEmisores() {
         },
     });
     emisores = await resp.json();
-    console.log(emisores)
 
     tabla.innerHTML = "";
 
@@ -43,7 +42,6 @@ const seleccionarFila = (tr, emi) => {
         .forEach((f) => f.classList.remove('table-info'));
     tr.classList.add('table-info');
     emisorSelec = emi;
-    console.log(emisorSelec);
 };
 
 // Mostrar y construir formulario según cada botón

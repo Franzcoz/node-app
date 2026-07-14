@@ -70,10 +70,10 @@ const Usuario = sequelize.define(
             },
         },
         clave: {
-            type: DataTypes.STRING(12),
+            type: DataTypes.STRING(60),
             allowNull: false,
             validate: {
-                len: [1, 12],
+                len: [1, 60],
             },
         },
         nombre: {
@@ -94,14 +94,14 @@ const Usuario = sequelize.define(
             type: DataTypes.STRING(50),
             allowNull: false,
             validate: {
-                len: [1, 50],
+                len: [0, 50],
             },
         },
         email: {
             type: DataTypes.STRING(50),
             allowNull: false,
             validate: {
-                len: [1, 15],
+                len: [1, 50],
                 isEmail: true,
             },
         },

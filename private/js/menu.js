@@ -25,7 +25,6 @@ async function cargarMenus() {
             return;
         }
         console.log('Error');
-        console.log(menus);
         return;
     }
 

@@ -7,7 +7,7 @@ const fondoController = {
             const inst = await fondoService.getAll();
             res.json(inst);
         } catch (err) {
-            saveLog(`GET /fondo | ${err.stack}`)
+            saveLog(`GET /fondo | ${err.stack}`);
             res.status(400).json({ error: "Error al consultar fondos" });
         }
     },
@@ -20,7 +20,7 @@ const fondoController = {
             const nuevo = await fondoService.create(req.body);
             res.status(201).json(nuevo);
         } catch (err) {
-            saveLog(`usuario:${req.body.usuario} | POST /fondo | ${err.stack}`)
+            saveLog(`usuario:${req.body.usuario} | POST /fondo | ${err.stack}`);
             res.status(400).json({ error: "No fue posible guardar el fondo" });
         }
     },
@@ -29,7 +29,7 @@ const fondoController = {
             const mod = await fondoService.update(req.params.id, req.body);
             res.json(mod);
         } catch (err) {
-            saveLog(`usuario:${req.body.usuario} | PUT /fondo | ${err.stack}`)
+            saveLog(`usuario:${req.body.usuario} | PUT /fondo | ${err.stack}`);
             res.status(400).json({ error: "Error al modificar el fondo" });
         }
     },
@@ -38,7 +38,7 @@ const fondoController = {
             const del = await fondoService.delete(req.params.id);
             res.json(del);
         } catch (err) {
-            saveLog(`usuario:${req.body.usuario} | DELETE /fondo | ${err.stack}`)
+            saveLog(`usuario:${req.body.usuario} | DELETE /fondo | ${err.stack}`);
             res.status(400).json({ error: "Error al eliminar el fondo" });
         }
     },
