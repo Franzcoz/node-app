@@ -5,6 +5,7 @@ Aplicación web básica para adminsitración de activos financieros construida c
 - Frontend Web (HTML, CSS, JS)
 - API REST de ejemplo
 - Backend con Node.js, Express y securización mediante JWT
+- Registro de usuarios y almacenamiento de contraseñas encriptadas con bcrypt
 - Sistema de logging a archivo
 - Estructura preparada para crecimiento modular
 
@@ -29,7 +30,7 @@ Servir como base simple y ordenada para futuras funcionalidades:
 - CORS
 - dotenv
 - PG + sequelize
-- JWT
+- JWT, bcrypt
 - Nodemon (desarrollo)
 
 - - -
@@ -62,8 +63,6 @@ proyecto/
 ├── public/ # Frontend público  
 │ ├── main.html  
 │ ├── ...  
-│ ├── css/  
-│ ├── img/  
 │ └── js/  
 │  
 └── src/  
@@ -76,7 +75,8 @@ proyecto/
   ├── routes/  
   ├── sql/  
   │ └── create-tables-sistema.sql  
-  └── services/  
+  ├── services/  
+  └── utils/  
 
 
 
@@ -109,8 +109,10 @@ La aplicación se ejecutará en el puerto configurado, que por defecto es'https:
 - [x] Utilizar sequelize para consultas a BD
 - [x] Incorporar autenticación con token por medio de cookies
 - [x] Implementar rutas privadas con redireccionamiento desde servidor
+- [x] Implementar encriptado de contraseñas con bcrypt
 - [ ] Implementar rutas y/o consultas protegidas según rol de usuario desde servidor
 - [ ] Incorporar usuario en log desde authMiddle u otro
+- [x] Implementar pantalla y backend para registro de nuevo Usuario
 - [ ] Implementar pantallas y backend para administración de Usuarios
 - [ ] Implementar pantallas y backend para administración de Roles
 - [ ] Implementar pantallas y backend para administración de Menús
